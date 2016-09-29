@@ -19,9 +19,9 @@ CocoaPods 1.1.0.RC2 or newer
 
 ### Installation
 Download the current version here:
-```
+
 [Releases](https://github.com/mr6volt/RandoPaper/releases/latest)
-```
+
 Then move to your Applications Folder like normal.
 
 ### Troubleshooting
