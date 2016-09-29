@@ -25,49 +25,39 @@ struct gVar {
     static let baseURL = "https://api.flickr.com/services/rest/?&method=flickr.photos.search&format=json&nojsoncallback=?"
     static let baseURL2 = "https://api.flickr.com/services/rest/?&method=flickr.photos.getSizes&format=json&nojsoncallback=?"
     static let apiString = "&api_key=\(gVar.apiKey)"
-    
     static var searchString2 = ""
 }
-
 
 class RandopaperViewController: NSViewController {
     
     func GetFlickrData(_ tags: String) {
-        
         var searchString = "&tags=\(tags)"
         gVar.tags = tags
         gVar.tags2 = tags
         var firstRequestURL = searchString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed)
         var requestURL = URL(string: gVar.baseURL + gVar.apiString + firstRequestURL!)
         var session = URLSession.shared
-        
         let task = session.dataTask(with: requestURL! as URL, completionHandler: { data, response, error -> Void in
             
             do {
                 let result = try JSONSerialization.jsonObject(with: data!, options: [JSONSerialization.ReadingOptions.allowFragments, JSONSerialization.ReadingOptions.mutableContainers]) as? [String : AnyObject]
-                
                 var list = [[]]
-                
                 // Debug
                 print(tags)
                 
                 var result2 = result?["photos"]?["photo"] as? [[String : AnyObject]]
                 if(result2?.isEmpty == false){
-                    
                     for anItem in result2! {
                         let userName = anItem["owner"]! as AnyObject
                         let photoID = anItem["id"]! as AnyObject
-                        
                         list.append([userName, photoID])
                     }
                 } else {
                     // Debug
                     print("Borked Array at Flickr JSON Search responce!")
                     print("OR, Search Result was Empty!")
-                    
                     // Annoy the USer
                     self.errorShow()
-                    
                 }
                 
                 var randomIndex = Int(arc4random_uniform(UInt32(list.count)))
@@ -145,9 +135,6 @@ class RandopaperViewController: NSViewController {
         task.resume()
     }
     
-    
-    // @IBOutlet weak var viewControllerVar: NSViewController!
-    
     // Image Screen Output
     @IBOutlet var imageView: NSImageView?
     // Downloads the images for us
@@ -155,8 +142,6 @@ class RandopaperViewController: NSViewController {
         Alamofire.request(gVar.wallPaperURL).responseImage { (response) -> Void  in
             if let image = response.result.value {
                 self.imageView?.image = image
-                
-                
                 // This section resizes the popover to eliminate blank spaces caused by different image aspect ratios
                 // This is the ViewController height ... probably don't need it.
                 let viewHeight = 386
@@ -175,13 +160,11 @@ class RandopaperViewController: NSViewController {
     
     // Tag Search box
     @IBOutlet weak var searchTextBox: NSTextField!
-    // @IBAction func searchReturn(sender: )
     
+    // Enter Key Listener for the searchBox
     @IBAction func SearchReturn(_ sender: AnyObject) {
         imageRefresher(sender.mouseUp! as AnyObject)
     }
-    
-    
     
     // Refresh Image
     @IBAction func imageRefresher(_ sender: AnyObject) {
@@ -238,12 +221,6 @@ class RandopaperViewController: NSViewController {
         self.view.translatesAutoresizingMaskIntoConstraints = true
         // Do view setup here.
         GetFlickrData(gVar.tagFromSearch)
-        
-        
     }
     
-    
-    
-    
 }
-
