@@ -12,6 +12,7 @@ import AlamofireImage
 
 struct gVar {
     static var selectedPhoto = [Any]()
+    static var oldSearchString2 = ""
     static var selectedPhoto2 = ""
     static var wallPaperURL = ""
     static var tags = ""
@@ -22,7 +23,7 @@ struct gVar {
     static var tagFromSearch = "wallpaper"
     static var oldSelectedPhoto2 = ""
     static let apiKey = "f28739b50441fda42e3e3c59f2656251"
-    static let baseURL = "https://api.flickr.com/services/rest/?&method=flickr.photos.search&format=json&nojsoncallback=?"
+    static let baseURL = "https://api.flickr.com/services/rest/?&method=flickr.photos.search&per_page=500&format=json&nojsoncallback=?"
     static let baseURL2 = "https://api.flickr.com/services/rest/?&method=flickr.photos.getSizes&format=json&nojsoncallback=?"
     static let apiString = "&api_key=\(gVar.apiKey)"
     static var searchString2 = ""
@@ -44,8 +45,9 @@ class RandopaperViewController: NSViewController {
                 var list = [[]]
                 // Debug
                 print(tags)
-                
+                print(result)
                 var result2 = result?["photos"]?["photo"] as? [[String : AnyObject]]
+                //print(result2)
                 if(result2?.isEmpty == false){
                     for anItem in result2! {
                         let userName = anItem["owner"]! as AnyObject
@@ -62,15 +64,16 @@ class RandopaperViewController: NSViewController {
                 
                 var randomIndex = Int(arc4random_uniform(UInt32(list.count)))
                 gVar.selectedPhoto = list[randomIndex]
-                var oldSearchString2 = ""
+                
                 let isSelectedPhotoValid = gVar.selectedPhoto.indices.isEmpty
                 
                 // Prevents Index Out of Range Crash
                 if (isSelectedPhotoValid == false) {
                     gVar.searchString2 = "&photo_id=\(gVar.selectedPhoto[1])"
-                    oldSearchString2 = gVar.searchString2
+                    gVar.oldSearchString2 = gVar.searchString2
                 } else {
-                    gVar.searchString2 = oldSearchString2
+                    gVar.searchString2 = gVar.oldSearchString2
+                    print("Error occurred during random selection!")
                 }
                 
                 var requestURL2 = URL(string: gVar.baseURL2 + gVar.apiString + gVar.searchString2)
@@ -169,7 +172,7 @@ class RandopaperViewController: NSViewController {
     // Refresh Image
     @IBAction func imageRefresher(_ sender: AnyObject) {
         var searchBox = searchTextBox.objectValue as! String
-        if (searchBox != nil) { gVar.tagFromSearch = "\(searchBox)" } else { gVar.tagFromSearch = "new" }
+        if (searchBox != "") { gVar.tagFromSearch = "\(searchBox)" } else { gVar.tagFromSearch = "wallpaper" }
         // Rerun the code in the view setup function ... i'm lazy okay?
         viewDidLoad()
     }

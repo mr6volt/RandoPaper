@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B092367F1D9763EB00FEB886"
-               BuildableName = "Randopaper.app"
+               BuildableName = "RandoPaper.app"
                BlueprintName = "Randopaper"
-               ReferencedContainer = "container:Randopaper.xcodeproj">
+               ReferencedContainer = "container:RandoPaper.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B092367F1D9763EB00FEB886"
-            BuildableName = "Randopaper.app"
+            BuildableName = "RandoPaper.app"
             BlueprintName = "Randopaper"
-            ReferencedContainer = "container:Randopaper.xcodeproj">
+            ReferencedContainer = "container:RandoPaper.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B092367F1D9763EB00FEB886"
-            BuildableName = "Randopaper.app"
+            BuildableName = "RandoPaper.app"
             BlueprintName = "Randopaper"
-            ReferencedContainer = "container:Randopaper.xcodeproj">
+            ReferencedContainer = "container:RandoPaper.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B092367F1D9763EB00FEB886"
-            BuildableName = "Randopaper.app"
+            BuildableName = "RandoPaper.app"
             BlueprintName = "Randopaper"
-            ReferencedContainer = "container:Randopaper.xcodeproj">
+            ReferencedContainer = "container:RandoPaper.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
