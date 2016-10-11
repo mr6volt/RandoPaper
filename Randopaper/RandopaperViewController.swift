@@ -157,6 +157,9 @@ class RandopaperViewController: NSViewController {
                 var newViewWidth = (Float(imageViewHeight) / imageArc) + Float(120)
                 // Set new width on popover to make it grow and shrink dynamically. YAY MAGIC!
                 gAppVar.popover.contentSize.width =  CGFloat(floor(newViewWidth))
+                //Update Image Resolution Display
+                self.imageRes.stringValue = "\(imageWidth)/\(imageHeight)"
+                self.imageRes.updateLayer()
             }
         }
     }
@@ -173,8 +176,8 @@ class RandopaperViewController: NSViewController {
     @IBAction func imageRefresher(_ sender: AnyObject) {
         var searchBox = searchTextBox.objectValue as! String
         if (searchBox != "") { gVar.tagFromSearch = "\(searchBox)" } else { gVar.tagFromSearch = "wallpaper" }
-        // Rerun the code in the view setup function ... i'm lazy okay?
-        viewDidLoad()
+        // Search for new image
+        GetFlickrData(gVar.tagFromSearch)
     }
     
     // Set Current Image as Desktop Wallpaper
@@ -183,8 +186,8 @@ class RandopaperViewController: NSViewController {
         Alamofire.download(gVar.wallPaperURL, to: gVar.path2)
         
         var urlExploder = gVar.wallPaperURL.characters.split {$0 == "/"}.map(String.init)
-        print(urlExploder)
-        var fileWithPath = "/Users/\(gVar.username)/Documents/\(urlExploder[3])"
+        // use the LAST part of the url as the filename.(Future-Proofing)
+        var fileWithPath = "/Users/\(gVar.username)/Documents/\((urlExploder.last)!)"
         var isImageOnDrive = false
         while (isImageOnDrive == false) {
             do {
@@ -214,6 +217,10 @@ class RandopaperViewController: NSViewController {
         
     }
     
+    // Displays Resolution of current Image
+    @IBOutlet weak var imageRes: NSTextField!
+    
+    
     // Quit RandoPaper
     @IBAction func killRandoPaper(_ sender: AnyObject) {
         exit(0)
@@ -222,7 +229,10 @@ class RandopaperViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = true
-        // Do view setup here.
+        // Make the Image Resolution text box less ugly
+        self.imageRes.wantsLayer = true
+        self.imageRes.layer?.cornerRadius = 5
+        // Begin first Image search
         GetFlickrData(gVar.tagFromSearch)
     }
     

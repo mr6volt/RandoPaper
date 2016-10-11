@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="RandopaperViewController" customModule="RandoPaper" customModuleProvider="target">
             <connections>
                 <outlet property="errorStatus" destination="vBc-LU-a8b" id="IiI-4m-54O"/>
+                <outlet property="imageRes" destination="1OF-al-3Gs" id="SSn-LL-8OF"/>
                 <outlet property="imageView" destination="WAk-6H-IBa" id="Rs1-an-9HN"/>
                 <outlet property="searchTextBox" destination="rzX-aF-vgs" id="2Iu-UR-l8F"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -101,6 +102,15 @@ AQQBFgEZAR4AAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAABIA
                         <font key="font" size="22" name="Futura-MediumItalic"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="backgroundColor" red="0.28907243516263981" green="0.29211530290119392" blue="0.29211530290119392" alpha="0.84672095070422537" colorSpace="custom" customColorSpace="sRGB"/>
+                    </textFieldCell>
+                </textField>
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="1OF-al-3Gs">
+                    <rect key="frame" x="139" y="20" width="119" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" focusRingType="none" alignment="center" title="xxxx BY xxxx" drawsBackground="YES" id="7oT-j3-eNh">
+                        <font key="font" size="17" name="Futura-MediumItalic"/>
+                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="windowFrameColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
             </subviews>
